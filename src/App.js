@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import Header from './Header';
+import SideDrawer from './SideDrawer';
 class App extends Component {
+	
+		state= {sideDrawerOpen: false}; 
+	
+	showSideBar = () =>
+	{
+		this.setState((prev) => {
+			return({sideDrawerOpen: !prev.sideDrawerOpen});
+		})
+		console.log(`Burger Pressed ${this.state.sideDrawerOpen}`);
+	}
+
   render() {
+  	/*let sideDrawer;
+  	if(this.state.sideDrawerOpen){
+  		 sideDrawer=<SideDrawer />;
+  	}*/
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+         <Header showSB={this.showSideBar}/> 
+         <SideDrawer showSideBar={this.state.sideDrawerOpen}/>
       </div>
     );
   }

@@ -1,0 +1,41 @@
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.list{
+  list-style: none;
+}
+
+.dropdown-content {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.my-cart{
+  grid-column: 17/19;
+}
+
+.button{
+  background: black; 
+  /*background-color: #4CAF50;*/
+ /* border: none;*/
+  color: white;
+  padding: 5px 0px 5px 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+   -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}

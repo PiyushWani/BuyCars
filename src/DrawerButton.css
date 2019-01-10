@@ -1,0 +1,16 @@
+.toggle-button{
+	display: flex;
+	flex-direction: column; 
+	justify-content: space-between;
+	justify-self: center; 
+	height:65%;
+	width:65%;
+	background: black;
+	border: none;
+}
+
+.toggle-button-line{
+	width: 100%;
+	height: 10%;
+	background: white;
+}
