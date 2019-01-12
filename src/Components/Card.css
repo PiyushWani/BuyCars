@@ -1,0 +1,42 @@
+.card-layout{
+	margin: 3px;
+	display: flex;
+	flex-direction: column;	
+	border-radius: 5px;
+	width: 250px;
+	height: 250px;
+	background: white;
+	box-shadow: 3px 3px #888888;
+	align-items: center;
+	justify-content: center;
+}
+.image-style{
+	justify-self: center;
+	width: 70%;
+	height: 70%;
+	border-radius: 100%;
+	background: rgba(180, 100, 0, 0.1);
+}
+.content-style{
+	width: 100%;
+	height: 25%;
+	margin-top: 5px;
+	text-align: center;
+	background: white;
+}
+div h3{
+	font-family: fantasy;
+	font-size: 25px;
+}
+div label{
+	font-size: 13px;
+}
+button{
+	border-style: none;
+	cursor: pointer;
+}
+
+.checkbox{
+	display: inline-flex;
+}
+

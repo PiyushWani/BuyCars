@@ -1,6 +1,6 @@
 import React from 'react';
 import './SideDrawer.css';
-import DrawerButton from './DrawerButton';
+
 const SideDrawer = props =>{	
 							let classCSS = ["side-drawer"];
 							console.log(`showSideBar: ${props.showSideBar}`)

@@ -30,7 +30,7 @@ class Dropdown extends Component
 					onMouseOut={this.rollUp}
 					className="my-cart button" 
 					name="myCart"> 
-						My Cart 
+						Cart 
 					</button>
 					<div className="dropdown-content">
 					    <span><a href="#">Link 1</a></span>
@@ -50,7 +50,7 @@ class Dropdown extends Component
 					onMouseOut={this.rollUp}
 					className="my-cart button" 
 					name="myCart"> 
-						My Cart 
+						Cart 
 					</button>
 				</div>
 			);
