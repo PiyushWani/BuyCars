@@ -5,8 +5,8 @@
 	position: fixed;
 	top: 7.5%;
 	left: 0%;
-	width: 400px;
-	max-width: 15%;
+	width: 70%;
+	max-width: 250px;
 	box-shadow: 2px 0px 5px rgba(0,0,0,0.5);
 	transition: transform 0.3s ease-out;
 	transform: translateX(-100%);

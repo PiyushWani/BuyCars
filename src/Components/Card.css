@@ -1,15 +1,17 @@
 .card-layout{
 	margin: 3px;
 	display: flex;
-	flex-direction: column;	
+	flex-direction: column;
+	border-style: 1px solid red;	
 	border-radius: 5px;
 	width: 250px;
-	height: 250px;
+	height: 270px;
 	background: white;
 	box-shadow: 3px 3px #888888;
 	align-items: center;
 	justify-content: center;
 }
+
 .image-style{
 	justify-self: center;
 	width: 70%;
@@ -31,11 +33,22 @@ div h3{
 div label{
 	font-size: 13px;
 }
-button{
+.button-style{
 	border-style: none;
+	color: white;
+	padding: 7px;
+	width: 100%;
+	background: black;
+	border-radius: 5px;
 	cursor: pointer;
+	margin-bottom: 0px;
 }
-
+.card-layout:hover{
+	width: 255px;
+	height: 275px;
+	margin-bottom: 0px;
+	z: 200;
+}
 .checkbox{
 	display: inline-flex;
 }

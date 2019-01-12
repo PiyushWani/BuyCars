@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Header from '../Components/Header';
 import SideDrawer from '../Components/SideDrawer';
-import Card from '../Components/Card'
+import DisplayCards from '../Components/DisplayCards';
 class App extends Component {
 	
 		state= {sideDrawerOpen: false}; 
@@ -26,16 +26,8 @@ class App extends Component {
       <div className="App">
          <Header showSB={this.showSideBar}/> 
          <SideDrawer showSideBar={this.state.sideDrawerOpen}/>
-         <Card name={'Maruti Suzuki'} buttonPressed={this.buttonPressed}/>
-         <Card name={'Maruti Suzuki'} buttonPressed={this.buttonPressed}/>
-         <Card name={'Maruti Suzuki'} buttonPressed={this.buttonPressed}/>
-         <Card name={'Maruti Suzuki'} buttonPressed={this.buttonPressed}/>
-         <Card name={'Maruti Suzuki'} buttonPressed={this.buttonPressed}/>
-         <Card name={'Maruti Suzuki'} buttonPressed={this.buttonPressed}/>
-         <Card name={'Maruti Suzuki'} buttonPressed={this.buttonPressed}/>
-         <Card name={'Maruti Suzuki'} buttonPressed={this.buttonPressed}/>
-         <Card name={'Maruti Suzuki'} buttonPressed={this.buttonPressed}/>
-         <Card name={'Maruti Suzuki'} buttonPressed={this.buttonPressed}/>
+         <DisplayCards />
+         {/*<Card name={'Maruti Suzuki'} buttonPressed={this.buttonPressed}/>*/}
       </div>
     );
   }
