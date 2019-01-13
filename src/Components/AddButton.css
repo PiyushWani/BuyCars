@@ -1,0 +1,15 @@
+.button-style{
+	border-style: none;
+	color: white;
+	padding: 7px;
+	width: 100%;
+	background: black;
+	border-radius: 0px;
+	cursor: pointer;
+	margin-bottom: 0px;
+
+}
+
+.green{
+	background: green;
+}

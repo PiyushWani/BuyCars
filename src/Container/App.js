@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
-
+import { cardList } from '../Components/CardList';
 import Header from '../Components/Header';
 import SideDrawer from '../Components/SideDrawer';
 import DisplayCards from '../Components/DisplayCards';
+import ErrorMessageBar from '../Components/ErrorMessageBar'
 class App extends Component {
-	
-		state= {sideDrawerOpen: false}; 
-	
+ tempList = [];
+  constructor(){
+    super();
+    this.state ={
+          sideDrawerOpen: false,
+          cartList: [],
+          searchValue: ''
+          }; 
+  }
 	showSideBar = () =>
 	{
 		this.setState((prev) => {
@@ -14,20 +21,39 @@ class App extends Component {
 		})
 		console.log(`Burger Pressed ${this.state.sideDrawerOpen}`);
 	}
+
   buttonPressed = (event) =>{
-    console.log(event.target.value);
+    console.log(`Add to cart pressed: ${event.target.value}`);
+    this.tempList.push(event.target.value);
+    this.setState({cartList: this.tempList});
+    console.log('CartList: '+this.state.cartList);
   }
+
+  searchValueChanged = (event) =>{
+    this.setState({searchValue: event.target.value})
+  }
+
   render() {
-  	/*let sideDrawer;
-  	if(this.state.sideDrawerOpen){
-  		 sideDrawer=<SideDrawer />;
-  	}*/
+    let errorMessageBar;
+    let filteredCardList = cardList.filter(card =>{
+      return card.title.toLowerCase().includes(this.state.searchValue.toLowerCase());
+      })
+    if(filteredCardList.length === 0){
+        filteredCardList = cardList;
+        errorMessageBar = <ErrorMessageBar errorMessage={`No Results found for ${this.state.searchValue}`}/>
+    }
     return (
       <div className="App">
-         <Header showSB={this.showSideBar}/> 
+         <Header  showSB={this.showSideBar}
+                  searchValueChanged={this.searchValueChanged} 
+         />
+         {errorMessageBar}
          <SideDrawer showSideBar={this.state.sideDrawerOpen}/>
-         <DisplayCards />
-         {/*<Card name={'Maruti Suzuki'} buttonPressed={this.buttonPressed}/>*/}
+         <DisplayCards 
+                cardList={filteredCardList}
+                buttonPressed={this.buttonPressed} 
+                cartList={this.state.cartList}
+          />
       </div>
     );
   }

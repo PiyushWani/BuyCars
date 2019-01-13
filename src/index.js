@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import 'tachyons';
 import App from './Container/App';
 import * as serviceWorker from './serviceWorker';
 /*import Bootstrap from 'bootstrap/dist/css/bootstrap.css';*/

@@ -3,3 +3,13 @@
 	flex-wrap: wrap;
 	justify-content: center;
 }
+.top-space{
+	
+	height: 10%;
+  	max-height: 60px;
+  	background: white;
+  	color: white;
+}
+.left-space{
+	left:%;
+}

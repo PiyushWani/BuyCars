@@ -21,13 +21,10 @@
   z-index: 1;
 }
 
-.my-cart{
-}
-
-.button{
+.dropdownButton{
   background: black; 
-  /*background-color: #4CAF50;*/
- /* border: none;*/
+  background-color: #4CAF50;
+  border: none;
   color: white;
   padding: 5px 0px 5px 0px;
   text-align: center;

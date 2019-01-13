@@ -24,7 +24,16 @@ export const cardList = [
 		title: "Tesla"
 	},
 	{
-		title: "Ram"
+		title: "Renault"
+	},
+	{
+		title: "Daewood"
+	},
+	{
+		title: "Mahindra"
+	},
+	{
+		title: "Hyundai"
 	},
 	{
 		title: "Honda"

@@ -1,19 +1,21 @@
 import React from 'react';
 import './Card.css';
-const card = (props) => {
-
+import AddButton from './AddButton';
+const card = ({card, buttonPressed, cardStatus}) => {
+			
 			return(		
-						<div className="card-layout">
+						<div className="card-layout grow">
 							<div className="image-style">
 								<img  /*alt="can't display ${props.name}"*/ src='../Toyota.png'/>
 							</div>
 							<div className="content-style">
-								<h3>{props.name}</h3>
-								 <div >
-								 	<input className="button-style" type="button" name="favorite" value="Add to Cart"/>
+								<h3>{card.title}</h3>
+								 <div>
+								 	<AddButton card={card} buttonPressed={buttonPressed} cardStatus={cardStatus}/>
 								 </div>
 							</div>
 						</div>
-						
 					)}
 export default card;
+/*
+tc bg-light-green dib br3 pa3 ma3 grow*/

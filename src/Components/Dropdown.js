@@ -25,7 +25,7 @@ class Dropdown extends Component
 		{
 			return(
 				<div className="dropdown">
-				  <button 
+				  <button className="dropdownButton" 
 					onMouseOver={this.rollDown}
 					onMouseOut={this.rollUp}
 					className="my-cart button" 
