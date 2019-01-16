@@ -1,4 +1,4 @@
-/*.arrange-cards{
+.arrange-cards{
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -12,9 +12,4 @@
 }
 .left-space{
 	left:%;
-}*/
-
-.container{
-	display: flex;
-	flex-direction: row;
 }

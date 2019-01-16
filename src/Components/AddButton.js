@@ -1,14 +1,13 @@
 import React from 'react';
 import './AddButton.css';
-const AddButton = ({card, buttonPressed, cardStatus}) =>
+const AddButton = ({card, addItem, removeItem}) =>
 	{
-		/*console.log(`${card.title} cardStatus: ${cardStatus}`);*/
-		let addButton = <button className="button-style" type="button" value={card.title} onClick={buttonPressed}>
-						Add to Cart
-				</button>
-		if(cardStatus === 'ADDED-TO-CART')	{
+		let addButton = <button className="button-style" type="button" value={card.title} onClick={addItem}>
+							Add to cart
+						</button>
+		if(card.cart === true)	{
 			/*console.log(`car ${card.title} has been added to offClick`)*/
-			addButton = <button className="button-style green" type="button" value={card.title}>
+			addButton = <button className="button-style green" type="button" value={card.title} onClick={removeItem}>
 						Added
 				</button>
 		}	
@@ -19,6 +18,4 @@ const AddButton = ({card, buttonPressed, cardStatus}) =>
 			);
 
 	}
-	
-
 export default AddButton;

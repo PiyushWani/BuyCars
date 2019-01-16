@@ -1,21 +1,38 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './Card.css';
 import AddButton from './AddButton';
-const card = ({card, buttonPressed, cardStatus}) => {
-			
-			return(		
-						<div className="card-layout grow">
-							<div className="image-style">
-								<img  /*alt="can't display ${props.name}"*/ src='../Toyota.png'/>
-							</div>
-							<div className="content-style">
-								<h3>{card.title}</h3>
-								 <div>
-								 	<AddButton card={card} buttonPressed={buttonPressed} cardStatus={cardStatus}/>
+class Card extends Component{
+	constructor(){
+		super();
+		this.state = {
+			add:false
+		}
+	}
+	addItem = (event) =>{
+			    this.props.card.cart = true;
+			    this.setState((prev)=>({add:true}));
+	}
+	removeItem = (event) =>{
+	    this.props.card.cart = false;
+	    this.setState((prev)=>({add:false}));
+	}
+
+	render(){
+		return(			<div className="card-layout grow">
+								<div className="image-style">
+									<img src="http://placekitten.com/g/300/300" alt="Photo of a kitten looking menacing."/>
+								</div>
+								<div className="product-description">
+								 <h3>{this.props.card.title}</h3>
+								</div> 
+								 <div className="add-button">
+									 <AddButton card={this.props.card} addItem={this.addItem} removeItem={this.removeItem} cardStatus={this.props.cardStatus}/>
 								 </div>
-							</div>
 						</div>
-					)}
-export default card;
+					);
+
+	}
+}		
+export default Card;
 /*
 tc bg-light-green dib br3 pa3 ma3 grow*/

@@ -15,6 +15,7 @@
   max-height: 60px;
   min-height: 40px;
   z-index: 100;
+  top: 0px;
 }
 .button{
   height: 100%;

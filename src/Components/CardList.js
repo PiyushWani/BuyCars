@@ -1,42 +1,55 @@
 export const cardList = [
 	{
-		title: "Toyota"
+		title: "Toyota",
+		cart: false
 	},
 	{
-		title: "Mercedes"
+		title: "Mercedes",
+		cart: false
 	},
 	{
-		title: "Masserati"
+		title: "Masserati",
+		cart: false
 	},
 	{
-		title: "Maruti"
+		title: "Maruti",
+		cart: false
 	},
 	{
-		title: "Range Rover"
+		title: "Range Rover",
+		cart: false
 	},
 	{
-		title: "Tata"
+		title: "Tata",
+		cart: false
 	},
 	{
-		title: "Suzuki"
+		title: "Suzuki",
+		cart: false
 	},
 	{
-		title: "Tesla"
+		title: "Tesla",
+		cart: false
 	},
 	{
-		title: "Renault"
+		title: "Renault",
+		cart: false
 	},
 	{
-		title: "Daewood"
+		title: "Daewood",
+		cart: false
 	},
 	{
-		title: "Mahindra"
+		title: "Mahindra",
+		cart: false
 	},
 	{
-		title: "Hyundai"
+		title: "Hyundai",
+		cart: false
 	},
 	{
-		title: "Honda"
+		title: "Honda",
+		cart: false
 	}
 
 ];
