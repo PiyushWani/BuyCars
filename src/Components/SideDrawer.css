@@ -16,6 +16,7 @@
 	transform: translateX(0);
 }
 .list-title{
+	text-align: center;
 	padding:40px, 0px, 40px, 0px;
 	margin: 20px;
 }

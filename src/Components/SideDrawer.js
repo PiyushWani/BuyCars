@@ -11,7 +11,7 @@ const SideDrawer = props =>{
 							console.log(`classCSS: ${classCSS}`);						
 							return(
 								<nav className={classCSS.join(' ')}>
-									<div className='list-title'>Tools</div>
+									<div className='list-title'>Filters</div>
 									<ul className="item-list">
 										<li className="item"> <a className="anchor" href="#">Item 1</a></li>
 										<li className="item"> <a className="anchor" href="#">Item 2</a></li>

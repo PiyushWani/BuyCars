@@ -1,0 +1,14 @@
+.checkout-button{
+	height: 30px;
+	background: green;
+	color: white;
+	border-style: none;
+	border: solid 1px green;
+	z-index: 1000;
+}
+.checkout-button:hover{
+	cursor: pointer;
+	height: 30px;
+	background: white;
+	color: green;
+}

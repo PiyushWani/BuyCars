@@ -2,7 +2,13 @@ import React from 'react';
 import './Header.css';
 import Dropdown from './Dropdown';
 import DrawerButton from './DrawerButton';
-const Header = ({showSB, searchValueChanged,favoritePressed, homePressed}) =>{
+const Header = ({showSB, searchValueChanged,favoritePressed, homePressed, cartPressed, dropdownChanged}) =>{
+	const mylist={
+			"My Profile":"My Profile Link",
+			"My Pay": "My Pay Link",
+			"Logout": "Logout Link"
+			}
+			
 		return(
 			<nav className="topnav">	
 						<DrawerButton showSB={showSB}/>
@@ -11,8 +17,9 @@ const Header = ({showSB, searchValueChanged,favoritePressed, homePressed}) =>{
 						<button className="search button" name="searchButton"> Search </button>
 						<button className="home button" name="home" onClick={homePressed}> Home </button>
 						<button className="favorite button" name="favorites" onClick={favoritePressed}> Favorites </button>
-						<Dropdown />
-						<button className="logout button" name="logout"> Logout </button>
+						<button className="button" name="myCart" onClick={cartPressed}> My Cart </button>
+						<Dropdown caption={'My Account'} list={mylist} dropdownChanged={dropdownChanged}/>
+						
 			</nav>	
 		);
 	}

@@ -1,0 +1,43 @@
+.cart-item2{
+	background: rgba(200, 0, 0, 0.2);
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	margin: 0px 0px 5px 0px;
+	border: solid 1px red;
+}
+.cart-item2 .cart-image{
+	grid-column: 1/2;
+	height:100%;
+	width: 100%;
+}
+.cart-item2 .cart-item-desc{
+	grid-column: 2/4;
+}
+.cart-item2 .cart-item-manip{
+	grid-column: 5/6;
+	margin-left: auto;
+	margin: 5px, 5px, 5px, 0px;
+}
+.cart-item2 .remove-button{
+	width:100%;
+	border: none;
+	background: black;
+	color: grey;
+}
+.cart-item2 .remove-button:hover{
+	cursor: pointer;
+	background: red;
+	color: white;
+}
+
+.cart-item2 .cart-dropdown{
+	 -webkit-appearance: none;
+	width: 100%;
+	 background: black;
+	 color:white;
+	 	
+}
+.cart-item2 .cart-dropdown:hover{
+	 background: white;
+	 color:black;
+}

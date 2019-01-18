@@ -21,9 +21,6 @@ class DisplayCards extends Component{
 													return(
 														<div>
 														<Card card={card} 
-														 		addItem={this.addItem} 
-														 		removeItem={this.removeItem} 
-														 		cardStatus={cardStatus}
 														 />
 													  	</div>
 													  )

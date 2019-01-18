@@ -23,7 +23,8 @@ class Card extends Component{
 									<img src="http://placekitten.com/g/300/300" alt="Photo of a kitten looking menacing."/>
 								</div>
 								<div className="product-description">
-								 <h3>{this.props.card.title}</h3>
+								 <div className="title">{this.props.card.title} </div>
+								 <div className="price">${this.props.card.price}</div>
 								</div> 
 								 <div className="add-button">
 									 <AddButton card={this.props.card} addItem={this.addItem} removeItem={this.removeItem} cardStatus={this.props.cardStatus}/>

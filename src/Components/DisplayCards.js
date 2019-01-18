@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import Card from './Card';
 
 import './DisplayCards.css';
@@ -7,7 +7,7 @@ const displayCards = ({cardList, buttonPressed, cartList, searchValue}) =>{
 	let cardStatus= '';
 	console.log(`Cart List in displayCards: ${cartList}`)
 	return(
-		<div className='left-space'>
+		<div className='container'>
 		<div className="top-space">. </div>
 		<div className="top-space">. </div>
 		<div className="top-space">. </div>
@@ -33,4 +33,4 @@ const displayCards = ({cardList, buttonPressed, cartList, searchValue}) =>{
 		);
 }
 
-export default displayCards; 
+export default displayCards; */

@@ -1,0 +1,14 @@
+.cart-container{
+	margin-top:4%;
+	display: grid;
+	grid-template-columns: repeat(10, 1fr);
+	background:white;
+	margin-right: 20px;
+}
+.cart-item{
+	grid-column: 3/11;
+}
+.checkout-place{
+	background: white;
+	margin-left: 89.8%;
+}

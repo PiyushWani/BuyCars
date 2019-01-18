@@ -1,0 +1,38 @@
+.card-placer{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 6%;
+}
+.login-card{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width:400px;
+	height:500px;
+	border: 1px solid red;
+	background:rgba(200,0,0,0.1);
+}
+.input-set{
+	border: 1px solid black;
+	width:200px;
+	height:30px;
+}
+.submitButton{
+	border: none;
+	width:200px;
+	height:30px;
+	background: red;
+	color:white;
+}
+.submitButton:hover{
+	border: 1px solid red;
+	cursor:pointer;
+	background: white;
+	color:red;
+}
+.margin{
+	margin:5px 0px 5px 0px;
+}
