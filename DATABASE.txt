@@ -1,0 +1,67 @@
+DROP TABLE customer_credentials;
+CREATE TABLE customer_credentials (
+customerid VARCHAR(20) PRIMARY KEY,
+username VARCHAR(80),
+password VARCHAR(512),
+salt VARCHAR(512)
+);
+DROP TABLE cards;
+CREATE TABLE cards(
+itemid VARCHAR(20) PRIMARY KEY,
+manufacturer VARCHAR(40),
+title VARCHAR(40) UNIQUE,
+price NUMBER(10, 4),
+available NUMBER(3)
+);
+
+DROP TABLE customers;
+CREATE TABLE customers(
+customerid VARCHAR(20) PRIMARY KEY,
+firstname VARCHAR(40) NOT NULL,
+lastname VARCHAR(40) NOT NULL,
+email varchar(80) NOT NULL,
+FOREIGN KEY (customerid) REFERENCES customer_credentials(customerid)
+);
+
+DROP TABLE cart;
+CREATE TABLE cart(
+itemid VARCHAR(20) NOT NULL,
+customerid VARCHAR(20) NOT NULL,
+quantity NUMBER(3) DEFAULT 1, 
+FOREIGN KEY (itemid) references cards(itemid),
+FOREIGN KEY (customerid) REFERENCES customers(customerid)
+);
+
+INSERT INTO customer_credentials VALUES('C-0001', 'piyushwani2011@gmail.com', 'pass', 'pass');
+INSERT INTO customer_credentials VALUES('C-0002', 'vishakhashinde2023@gmail.com', 'pass', 'pass');
+INSERT INTO customer_credentials VALUES('C-0003', 'santoshwani68@gmail.com', 'pass', 'pass');
+INSERT INTO customer_credentials VALUES('C-0004', 'adityawani2002@gmail.com', 'pass', 'pass');
+
+INSERT INTO customers VALUES ('C-0001', 'Piyush', 'Wani', 'piyushwani2011@gmail.com');
+INSERT INTO customers VALUES ('C-0002', 'Vishakha', 'Wani', 'vishakhashinde2023@gmail.com');
+INSERT INTO customers VALUES ('C-0003', 'Santosh', 'Wani', 'santoshwani68@gmail.com');
+INSERT INTO customers VALUES ('C-0004', 'Aditya', 'Wani', 'adityawani2002@gmail.com');
+
+INSERT INTO cards VALUES('I-0001', 'Tesla', 'T900', 26599.99, 12);
+INSERT INTO cards VALUES('I-0002', 'Tesla', 'T100', 32599.99, 5);
+INSERT INTO cards VALUES('I-0003', 'Tesla', 'T1100', 19599.99, 15);
+INSERT INTO cards VALUES('I-0004', 'Mercedes', 'D400', 16999.99, 15);
+INSERT INTO cards VALUES('I-0005', 'Mercedes', 'D800', 28699.99, 9);
+INSERT INTO cards VALUES('I-0006', 'Mercedes', 'C616', 32699.99, 4);
+INSERT INTO cards VALUES('I-0007', 'Mercedes', 'C730', 35699.99, 9);
+INSERT INTO cards VALUES('I-0008', 'Chevrolet', 'Cruise 80', 18499.99, 22);
+INSERT INTO cards VALUES('I-0009', 'Chevrolet', 'Cruise 85', 22499.99, 20);
+INSERT INTO cards VALUES('I-0010', 'Chevrolet', 'Poseidon P1000', 52999.99, 3);
+
+
+INSERT INTO cart VALUES('I-0001', 'C-0003', 1);
+INSERT INTO cart VALUES('I-0003', 'C-0003', 1);
+INSERT INTO cart VALUES('I-0005', 'C-0003', 1);
+INSERT INTO cart VALUES('I-0005', 'C-0002', 1);
+INSERT INTO cart VALUES('I-0009', 'C-0002', 1);
+INSERT INTO cart VALUES('I-0010', 'C-0002', 1);
+INSERT INTO cart VALUES('I-0008', 'C-0002', 1);
+INSERT INTO cart VALUES('I-0002', 'C-0004', 1);
+INSERT INTO cart VALUES('I-0003', 'C-0004', 1);
+INSERT INTO cart VALUES('I-0006', 'C-0004', 1);
+

@@ -67,7 +67,7 @@ class App extends Component {
   //===================================Content Manipulators===================================
   searchCards = () => {
       this.filteredCardList = this.cardList.filter(card =>{
-      return card.title.toLowerCase().includes(this.state.searchValue.toLowerCase());
+      return card.TITLE.toLowerCase().includes(this.state.searchValue.toLowerCase());
       }) 
   }
 

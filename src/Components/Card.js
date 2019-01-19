@@ -20,11 +20,11 @@ class Card extends Component{
 	render(){
 		return(			<div className="card-layout grow">
 								<div className="image-style">
-									<img src="http://placekitten.com/g/300/300" alt="Photo of a kitten looking menacing."/>
+									<img src="http://placekitten.com/g/300/300" alt="kitten"/>
 								</div>
 								<div className="product-description">
-								 <div className="title">{this.props.card.title} </div>
-								 <div className="price">${this.props.card.price}</div>
+								 <div className="title">{this.props.card.TITLE} </div>
+								 <div className="price">${this.props.card.PRICE}</div>
 								</div> 
 								 <div className="add-button">
 									 <AddButton card={this.props.card} addItem={this.addItem} removeItem={this.removeItem} cardStatus={this.props.cardStatus}/>

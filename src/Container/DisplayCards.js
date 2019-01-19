@@ -7,7 +7,7 @@ class DisplayCards extends Component{
 		render()
 		{
 				let cardStatus= '';
-				console.log(`Cart List in displayCards: ${this.cartList}`)
+				
 				return(
 					<div className='container'>
 					<div className="top-space">. </div>
