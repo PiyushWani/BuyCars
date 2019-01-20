@@ -20,24 +20,23 @@ class Login extends Component{
 		.then(response=>response.json())
 		.then(data => 
 					{
-						
 						if(data.status === 'VALID_USER')
 						{
 							const profile={
 								name: data.name,
-								age: data.age,
-								gender: data.gender
+								email: data.email,
+								customerid: data.customerid
 							}
-							fetch('http://localhost:4000/getCards', {
+							fetch('http://localhost:4000/getCards',{
 								method: 'post',
 								headers: {'Content-Type':'application/json'},
-								body: JSON.stringify({number:123})
+								body: JSON.stringify({customerid:data.customerid})
 							})
 							.then(res => res.json())
 							.then(data => {
 								data.map((car) => 
 									{
-										console.log("Car Title: ", data.title)
+										console.log("Car Titles ", car.TITLE)
 									})
 								console.log("Login profile", profile)
 								this.props.allowHome(profile, data);
@@ -47,8 +46,7 @@ class Login extends Component{
 							this.props.disallowHome();
 						}					
 					}
-			);
-						
+			);					
 	}
 	render(){
 		let message;
@@ -63,10 +61,10 @@ class Login extends Component{
 					{message}
 				</div>
 				<div>
-					<input ref="uname" className="input-set margin" type="text" name="userName" placeholder="User Name"/>
+					<input ref="uname" className="input-set margin" type="text" name="userName" value="vishakhashinde2023@gmail.com" placeholder="User Name"/>
 				</div>
 				<div>
-					<input ref="password" className="input-set margin" type="password" name="password" placeholder="password"/>
+					<input ref="password" className="input-set margin" type="password" name="password" value="pass" placeholder="password"/>
 				</div>
 				<div>
 					<button className="submitButton margin" name="submimt" onClick={this.sendCredentials}>SUBMIT</button>

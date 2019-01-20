@@ -10,13 +10,13 @@ class CartItem extends Component{
 				<img className="cart-image" alt="image" src="http://placekitten.com/g/300/300"/>
 				<div className="cart-item-desc">
 					<div>
-						Model: {this.item.title}
+						Model: {this.item.TITLE}
 					</div>
 					<div>
-						Manufacturer: Tesla 
+						Manufacturer: {this.item.MANUFACTURER}
 					</div>
 					<div>
-						Price: ${this.item.price}
+						Price: ${this.item.PRICE}
 					</div>
 					<div>
 						Address: 187 Kenmore, Buffalo, New York 
@@ -24,13 +24,13 @@ class CartItem extends Component{
 				</div>
 				<div className="cart-item-manip">
 					<div>
-						<button className="remove-button"> Remove </button>
+						<button className="remove-button" value={this.item.ITEMID} onClick={this.props.removePressed}> Remove </button>
 					</div>
 					<div>
 						<select className="cart-dropdown" id = "myList" onChange={this.props.quantityChanged}>
-			               <option value = {`${this.item.title}_0`}>Buy Later</option>
-			               <option value = {`${this.item.title}_1`} selected>1</option>
-			               <option value = {`${this.item.title}_2`}>2</option>
+			               <option value = {`${this.item.TITLE}_0`}>Buy Later</option>
+			               <option value = {`${this.item.TITLE}_1`} selected>1</option>
+			               <option value = {`${this.item.TITLE}_2`}>2</option>
 			             </select>
 					</div>
 				</div>

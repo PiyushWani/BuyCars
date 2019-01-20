@@ -11,41 +11,43 @@ class App extends Component {
 
   filteredCardList;
   cardList;
+  cartList;
   constructor(){
     super();
-    this.state ={
+    this.state={
+                refresh: true,
                 sideDrawerOpen: false,
                 searchValue: '',
-                route: 'HOME',
+                route: 'FETCH'
           }; 
   }
   //===================================STATE SETTERS=========================================
-	showSideBar = () =>{
+	showSideBar=()=>{
 		this.setState((prev) => {
 			return({sideDrawerOpen: !prev.sideDrawerOpen});
 		})
 	}
 
   searchValueChanged=(event)=>{  
-    const temp = event.target.value;
+    const temp=event.target.value;
     this.setState((prev)=>({searchValue: temp, route:'SEARCH'}))
   }
 
-  homePressed = () =>{
-    this.setState((prev)=>({route:'HOME'}));
-    this.filterCardList = this.cardList;
+  homePressed=() =>{
+    this.setState((prev)=>({route:'FETCH'}));
+    this.filterCardList=this.cardList;
   }
 
-   favoritePressed = () =>{
+   favoritePressed=()=>{
+
     this.setState((prev)=>({route:'FAVORITE'}));
   }
 
-  cartPressed = () =>{
-    this.setState((prev)=>({route:'MYCART'}));
+  cartPressed=()=>{
+     this.setState((prev)=>({route:'MYCART'}));
   }
-
-  dropdownChanged = (event) =>{
-    let choice = event.target.value;
+  dropdownChanged=(event)=>{
+    let choice=event.target.value;
     console.log("Dropdown Choice: "+choice);
     switch(choice){
       case 'LOGOUT':
@@ -77,10 +79,24 @@ class App extends Component {
       return card.cart;
       }) 
   }
-
-  //==============================================================================================
+  getCards=()=>{
+    fetch('http://localhost:4000/getCards',{
+                method: 'post',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({customerid:this.props.profile.customerid})
+              })
+              .then(res => res.json())
+              .then(data => {
+                data.map((car) => 
+                  {
+                    console.log("Car Titles ", car.TITLE)
+                  })
+                this.cardList=data;
+                this.setState((prev)=>({route:'HOME'}))
+              })
+    }
+  //==========================================================================================
   render() {
-    this.cardList = this.props.data;
     console.log("this.props.profile: ", this.props.profile)
     let errorMessageBar;
     let myCart;
@@ -92,22 +108,26 @@ class App extends Component {
                           homePressed={this.homePressed}
                           cartPressed={this.cartPressed}
                           dropdownChanged={this.dropdownChanged}
-
                  />;
-
     let sideDrawer;
+
     switch(this.state.route)
     {
+      case 'FETCH':
+      console.log("In fetch route")
+        this.getCards();
+        return(<div> Fetching Data </div>);
+      break;
       case 'HOME':
       this.filteredCardList= this.cardList;
       displayCards = <DisplayCards
                         cardList={this.filteredCardList}
                         buttonPressed={this.buttonPressed} 
                         cartList={this.state.cartList}
+                         profile={this.props.profile}
                   />
       sideDrawer = <SideDrawer showSideBar={this.state.sideDrawerOpen}/>
       break;
-
       case 'SEARCH':
       this.searchCards();
         if(this.filteredCardList.length === 0){
@@ -118,9 +138,9 @@ class App extends Component {
                         cardList={this.filteredCardList}
                         buttonPressed={this.buttonPressed} 
                         cartList={this.state.cartList}
-                  />
+                        profile={this.props.profile}
+                      />
       sideDrawer = <SideDrawer showSideBar={this.state.sideDrawerOpen}/>
-    
       break;
       case 'FAVORITE':
         this.favoriteCards();
@@ -130,14 +150,16 @@ class App extends Component {
         }
         displayCards = <DisplayCards
                         cardList={this.filteredCardList}
-                        buttonPressed={this.buttonPressed} 
+                        buttonPressed={this.buttonPressed}
                         cartList={this.state.cartList}
+                        profile={this.props.profile}
                   />
         sideDrawer = <SideDrawer showSideBar={this.state.sideDrawerOpen}/>    
       break;
 
       case 'MYCART':
-        myCart = <MyCart cartItemList={cartItemList}/>
+        myCart = <MyCart  profile={this.props.profile}
+                />
       break;
       default:
         //LOgout
@@ -145,7 +167,6 @@ class App extends Component {
     }
     
     return (
-
             <div className="App">
                  {header}
                  {login}

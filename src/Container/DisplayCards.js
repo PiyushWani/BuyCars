@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import Card from '../Components/Card';
 import './DisplayCards.css';
-
 class DisplayCards extends Component{
 		tempList = [];	
 		render()
 		{
-				let cardStatus= '';
-				
+				let cardStatus= '';		
 				return(
 					<div className='container'>
 					<div className="top-space">. </div>
@@ -20,8 +18,7 @@ class DisplayCards extends Component{
 													console.log("Card: "+card.title);
 													return(
 														<div>
-														<Card card={card} 
-														 />
+														<Card card={card} profile={this.props.profile} />
 													  	</div>
 													  )
 												}
@@ -31,7 +28,5 @@ class DisplayCards extends Component{
 					</div>
 					);
 		}
-
-} 
-
-export default DisplayCards; 
+}
+export default DisplayCards;
