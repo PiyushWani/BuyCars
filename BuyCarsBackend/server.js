@@ -79,6 +79,26 @@ const getCartItems=async(customerid)=>{
 		console.log("Piyush Exception: ", exception);
 	}
 }
+
+const registerUser = async (form)=>{
+	let status='UNDEFINED';
+	try{
+		console.log("Form - "+form.uname)
+		conn = await oracledb.getConnection(dbconfig);
+		nextNum = await conn.execute('SELECT customerid_sequence.nextval FROM DUAL'); 
+		nextNumr = await nextNum.rows[0].NEXTVAL;
+		console.log('Next Num: ',nextNum.rows[0].NEXTVAL)
+		r1 = await conn.execute("INSERT INTO customer_credentials VALUES ('"+nextNumr+"', '"+form.uname+"', '"+form.password+"', 'salt')"); 
+		r2 = await conn.execute("INSERT INTO customers values ('"+nextNumr+"', '"+form.firstname+"', '"+form.lastname+"', '"+form.email+"')");
+		await conn.execute('COMMIT');
+		status= 'SUCCESS'
+		conn.close();
+	}catch(exception){
+		console.log("Piyush: Exception in registerUser", exception)
+		status = 'FAILURE'
+	}
+	return status;
+}
 server.post('/login', (req,res)=>{
 	const authString={
 			status:INVALID_USER,
@@ -154,6 +174,14 @@ server.post('/getCartItems', (req, res)=>{
 		res.send(cartItems);
 	})
 
+})
+
+server.post('/registerUser', (req, res)=>{
+	console.log("In getCartItems, ", req.body)
+	registerUser(req.body)
+	.then(response=>{
+		res.send({status: response});
+	})
 })
 
 server.listen(4000, ()=>{

@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import 'tachyons';
 import Main from './Container/Main';

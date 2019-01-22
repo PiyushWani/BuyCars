@@ -34,12 +34,10 @@ class App extends Component {
   }
 
   homePressed=() =>{
-    this.setState((prev)=>({route:'FETCH'}));
-    this.filterCardList=this.cardList;
+    this.getCards();
   }
 
    favoritePressed=()=>{
-
     this.setState((prev)=>({route:'FAVORITE'}));
   }
 
@@ -87,10 +85,10 @@ class App extends Component {
               })
               .then(res => res.json())
               .then(data => {
-                data.map((car) => 
+                /*data.map((car) => 
                   {
                     console.log("Car Titles ", car.TITLE)
-                  })
+                  })*/
                 this.cardList=data;
                 this.setState((prev)=>({route:'HOME'}))
               })
@@ -118,14 +116,15 @@ class App extends Component {
         this.getCards();
         return(<div> Fetching Data </div>);
       break;
+
       case 'HOME':
-      this.filteredCardList= this.cardList;
+     {/* this.filteredCardList= this.cardList;*/}
       displayCards = <DisplayCards
-                        cardList={this.filteredCardList}
+                        cardList={this.cardList}
                         buttonPressed={this.buttonPressed} 
                         cartList={this.state.cartList}
                          profile={this.props.profile}
-                  />
+                    />
       sideDrawer = <SideDrawer showSideBar={this.state.sideDrawerOpen}/>
       break;
       case 'SEARCH':
@@ -178,5 +177,4 @@ class App extends Component {
             );
   }
 }
-
 export default App;

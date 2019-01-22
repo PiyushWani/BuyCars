@@ -11,21 +11,19 @@ class MainLogin extends Component{
 			profile: ''
 		}	
 	}
-	allowHome = (profile, data) =>{
+	allowHome=(profile, data) =>{
 		this.userProfile=profile;
 		this.data=data;
     	this.setState((prev)=>({route:'APP'}));
   	}
-  	
-  	disallowHome = () =>{
+  	disallowHome=() =>{
     	this.setState((prev)=>({route:'LOGININCORRECT'}));
   	}
-  	logoutPressed = () =>{
+  	logoutPressed=()=>{
   		this.setState((prev)=>({route:'LOGIN'}));
   	}
 	render(){
-		let display = <Login />;
-
+		let display=<Login />;
 		switch(this.state.route)
 		{
 		case 'LOGIN':
@@ -49,7 +47,7 @@ class MainLogin extends Component{
 	    				data={this.data}
 	    				profile={this.userProfile}
 	    				/>
-	    break;				
+	    break;			
 		default:
 			display = <Login 
 	                    allowHome={this.allowHome} 
