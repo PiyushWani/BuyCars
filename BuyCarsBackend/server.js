@@ -28,6 +28,7 @@ const validator=async (username, password)=>{
 		console.log("=>cardFetcher: exception occured", exception)
 	}
 }
+
 const cardFetcher=async (customerid)=>{
 	try{
 		conn = await oracledb.getConnection(dbconfig);
@@ -42,6 +43,7 @@ const cardFetcher=async (customerid)=>{
 		console.log("=>cardFether: exception occured", exception)
 	}
 }
+
 const addToCart=async(itemid, customerid)=>{
 	try{
 		conn = await oracledb.getConnection(dbconfig);
@@ -83,9 +85,9 @@ const getCartItems=async(customerid)=>{
 const registerUser = async (form)=>{
 	let status='UNDEFINED';
 	try{
-		console.log("Form - "+form.uname)
-		conn = await oracledb.getConnection(dbconfig);
-		nextNum = await conn.execute('SELECT customerid_sequence.nextval FROM DUAL'); 
+		console.log("Form - "+form.uname);
+		conn     = await oracledb.getConnection(dbconfig);
+		nextNum  = await conn.execute('SELECT customerid_sequence.nextval FROM DUAL'); 
 		nextNumr = await nextNum.rows[0].NEXTVAL;
 		console.log('Next Num: ',nextNum.rows[0].NEXTVAL)
 		r1 = await conn.execute("INSERT INTO customer_credentials VALUES ('"+nextNumr+"', '"+form.uname+"', '"+form.password+"', 'salt')"); 
@@ -99,6 +101,7 @@ const registerUser = async (form)=>{
 	}
 	return status;
 }
+
 server.post('/login', (req,res)=>{
 	const authString={
 			status:INVALID_USER,
@@ -107,7 +110,7 @@ server.post('/login', (req,res)=>{
 			customerid: ""
 	}	
 	validator(req.body.uname, req.body.password)
-	.then((records) => {
+	.then((records)=>{
 		console.log("Out of fun/ Record - ", records);
 		if(records.length === 1){
 			user = records[0];
@@ -125,6 +128,7 @@ server.post('/login', (req,res)=>{
 		}
 	})
 })
+
 server.post('/getCards', (req,res)=>{
 	let cardList2=[];
 	let card = {
@@ -184,6 +188,51 @@ server.post('/registerUser', (req, res)=>{
 	})
 })
 
+
+
+const makePurchase =  async (cart) =>{
+	console.log("In makePurchase function")
+	let itemsProcessed=0;
+		
+		const promises = await cart.map( async item =>{
+			try{
+				conn = await oracledb.getConnection(dbconfig);
+				const callQuery= `BEGIN make_purchase_proc('${item.customerid}', '${item.itemid}', ${item.quantity}, :status); END;`;
+				await conn.execute	(	callQuery,
+										{status: { dir: oracledb.BIND_OUT, type: oracledb.STRING, maxSize: 40}}, 
+										(err, result)=>{
+														if(!err){
+															item.status = result.outBinds.status;	
+															console.log("Item: ", item.itemid, item.status);
+															itemsProcessed= itemsProcessed+1;
+															return item;
+														}	
+															
+														}
+									);
+			}catch(exception){
+				console.log("Exception - ItemID: ", item.itemid, " | Exception: ",exception)
+			}
+		})
+
+		const results = await Promise.all(promises)
+		while(true){
+			if(itemsProcessed === cart.length){
+				console.log("IP: ",itemsProcessed)
+				return results;
+			}
+		}
+		
+		
+}
+server.post('/makePurchase', (req,res)=>{
+	makePurchase(req.body)
+	.then(response=>{
+		console.log("Got the response");
+		res.send(response);
+	})
+	
+})
 server.listen(4000, ()=>{
 		console.log("Hello Listening to 4000");
 })

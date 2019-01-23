@@ -5,6 +5,7 @@ username VARCHAR(80),
 password VARCHAR(512),
 salt VARCHAR(512)
 );
+
 DROP TABLE cards;
 CREATE TABLE cards(
 itemid VARCHAR(20) PRIMARY KEY,
@@ -28,9 +29,48 @@ CREATE TABLE cart(
 itemid VARCHAR(20) NOT NULL,
 customerid VARCHAR(20) NOT NULL,
 quantity NUMBER(3) DEFAULT 1, 
-FOREIGN KEY (itemid) references cards(itemid),
+FOREIGN KEY (itemid) REFERENCES cards(itemid),
 FOREIGN KEY (customerid) REFERENCES customers(customerid)
 );
+
+DROP TABLE purchases;
+CREATE TABLE purchases(
+purchaseid VARCHAR(20) CONSTRAINT purchases_pk PRIMARY KEY,
+customerid VARCHAR(20),
+itemid VARCHAR(20),
+quantity NUMBER(3),
+rate NUMBER(10),
+total_amount NUMBER(10),
+purchase_date DATE,
+status VARCHAR(20)
+);
+
+CREATE OR REPLACE PROCEDURE make_purchase_proc (cid IN VARCHAR, iid IN VARCHAR, request_quantity IN NUMBER, status OUT VARCHAR)
+AS
+available_quantity NUMBER;
+rate NUMBER;
+
+BEGIN
+
+SELECT available, price  INTO available_quantity, rate FROM cards WHERE itemid=iid;
+
+IF (available_quantity >= request_quantity) THEN
+	UPDATE cards SET available=available_quantity - request_quantity WHERE itemid=iid;
+RAISE except1;
+status:= 'PURCHASE_SUCCESSFUL';
+INSERT INTO purchases VALUES (purchase_seq.NEXTVAL, cid, iid, request_quantity, rate, request_quantity*rate, SYSDATE, status);
+ELSE
+	status:='REQUEST_QUANTITY_OVERFLOW';
+
+END IF; 
+
+EXCEPTION
+	WHEN except1 THEN
+	 status:='DATABASE Error'
+END;
+/
+show errors
+
 
 INSERT INTO customer_credentials VALUES('C-0001', 'piyushwani2011@gmail.com', 'pass', 'pass');
 INSERT INTO customer_credentials VALUES('C-0002', 'vishakhashinde2023@gmail.com', 'pass', 'pass');

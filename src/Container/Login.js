@@ -137,7 +137,7 @@ class Login extends Component{
 							<input ref="rlastname" className="input-set margin" type="text" name="userName" placeholder="Last Name"/>
 						</div>
 						<div>
-							<input ref="remail" className="input-set margin" type="text" name="userName" placeholder="Email"/>
+							<input ref="remail" className="input-set margin" type="email" name="userName" placeholder="Email"/>
 						</div>
 						<div>
 							<input ref="rpassword" className="input-set margin" type="password" placeholder="Confirm Password"/>
