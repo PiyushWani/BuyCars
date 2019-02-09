@@ -1,2 +1,2 @@
 # BuyCars
-A frontend developed in React.js for an e-commerce website
+An e-commerce Web application developed in React.js - Node.js framework
